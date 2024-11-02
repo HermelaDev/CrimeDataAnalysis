@@ -1,0 +1,17 @@
+# installing packages
+# install.packages('tidyverse')
+
+# Loding the library
+library(tidyverse)
+library(readxl)
+
+# importing the dataset
+data <- read_excel("C:\\Users\\Hermela\\Desktop\\Predogy_Internship\\Crime_Data_from_2020_to_Present_up.xlsx")
+data
+
+#Viewing the dataset
+view(data)
+
+head(data)
+
+tail(data,4)
