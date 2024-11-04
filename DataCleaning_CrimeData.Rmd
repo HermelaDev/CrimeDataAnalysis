@@ -21,9 +21,141 @@ data <- read_excel("C:\\Users\\Hermela\\Desktop\\Predogy_Internship\\Crime_Data_
 data
 ```
 
-#Viewing the dataset
+```{r}
+data
+# Dimension of dataframe
+dim(data)
+```
+
+```{r}
+# To know all of our column names
+colnames(data)
+```
+
+```{r}
+
+# To understand data type of each column in the dataframe
+glimpse(data)
+```
+
+```{r}
+# Checking for duplicated rows
+sum(duplicated(data))
+```
+
+# **Cleaning each column**
+
+```{r}
+# Renaming columns
+colnames(data) <- gsub(" ", "_", colnames(data))
+```
+
+#### DR_NO
+
+```{r}
+# Converting DR_NO to string (character) data type
+data$DR_NO <- as.character(data$DR_NO)
+
+```
+
+```{r}
+# Checking for duplicates
+sum(duplicated(data$DR_NO))
+```
+```{r}
+# Checking for missing values
+sum(is.na(data$DR_NO))
+```
+#### DATE_OCC
+
+```{r}
+# Checking the varaible is in date format
+class(data$DATE_OCC)
+```
+```{r}
+# Checking for missing values
+sum(is.na(data$DATE_OCC))
+```
+#### TIME_OCC
+
+```{r}
+# Converting TIME_OCC to time format
+data$TIME_OCC <- strptime(as.character(data$TIME_OCC), format = "%H%M") 
+
+# Formatting it further
+data$TIME_OCC <- format(data$TIME_OCC, format = "%H:%M")
+
+```
+
+```{r}
+glimpse(data$TIME_OCC)
+```
+```{r}
 view(data)
+```
 
-head(data)
 
-tail(data,9)
+```{r}
+# Checking for missing values
+sum(is.na(data$TIME_OCC))
+```
+
+```{r}
+# Checking if 'Part 1-2' column should be factor data type
+unique(data$`Part_1-2`)
+
+#Converting it to factor data type
+data$`Part_1-2` <- as.factor(data$`Part_1-2`)
+
+# Recoding the variable
+data <- data %>% 
+  mutate(`Part_1-2`=recode(`Part_1-2`, "1" = "Serious", "2" = "LessSerious"))
+
+class(data$`Part_1-2`)
+```
+
+```{r}
+# Checking if 'Vict_Sex' column should be factor data type
+unique(data$Vict_Sex)
+
+#Converting it to factor data type
+data$Vict_Sex <- as.factor(data$Vict_Sex)
+
+#Recoding the variables
+data <- data %>% 
+  mutate(Vict_Sex = recode(Vict_Sex, "M"= "Male", "F" = "Female", "X" = "Other", "H" = "Other","-" = "Other"))
+class(data$Vict_Sex)
+```
+
+```{r}
+# Checking if 'Vict_Descent' column should be factor data type
+unique(data$Vict_Descent)
+
+# Replacing "-" with "Other"
+data$Vict_Descent[data$Vict_Descent == "-"] <- "Other"
+
+# Converting the variable to factor data type
+data$Vict_Descent <- as.factor(data$Vict_Descent)
+
+class(data$Vict_Descent)
+```
+
+```{r}
+glimpse(data)
+```
+
+```{r}
+# Checking for missing values
+anyNA(data$LAT)
+anyNA(data$LON)
+```
+
+```{r}
+# Checking all the values are within the valid ranges of LAT & LON
+invalid_lat <- sum(data$LAT < -90 | data$LAT > 90, na.rm = TRUE)
+invalid_lon <- sum(data$LON < -180 | data$LON > 180, na.rm = TRUE)
+
+invalid_lat  
+invalid_lon  
+
+```
