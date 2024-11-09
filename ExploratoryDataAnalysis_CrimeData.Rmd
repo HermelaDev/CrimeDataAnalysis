@@ -1,0 +1,130 @@
+---
+title: "ExploratoryDataAnalysis_CrimeData"
+author: "Hermela Seltanu"
+date: "2024-11-09"
+output: html_document
+---
+
+
+```{r warning = FALSE, message=FALSE}
+# installing packages
+# install.packages('tidyverse')
+
+# Loding the library
+library(tidyverse)
+library(readr)
+library(scales)
+
+```
+
+
+```{r warning = FALSE, message=FALSE}
+# importing the dataset
+data <- read_csv("C:\\Users\\Hermela\\Desktop\\Predogy_Internship\\Cleaned_Crime_Data.csv")
+
+glimpse(data)
+```
+```{r}
+# Changing to factor
+data$`Part_1-2`<- as.factor(data$`Part_1-2`)
+data$Weapon_Desc <- as.factor(data$Weapon_Desc)
+data$Status_Desc <- as.factor(data$Status_Desc)
+data$Vict_Sex <- as.factor(data$Vict_Sex)
+data$Vict_Descent <- as.factor(data$Vict_Descent)
+```
+
+
+```{r}
+# To get statistical information
+summary(data)
+```
+
+```{r}
+ggplot(data, aes(x = Vict_Age)) +
+  geom_histogram(binwidth = 1, fill = "brown", color = "red") +
+  labs(title = "Distribution of Victim Age", x = "Victim Age", y = "Number of Victims") +
+  scale_y_continuous(labels = comma) +
+  facet_wrap(~Vict_Sex) +
+  theme_bw()
+```
+
+```{r}
+ggplot(data, aes(x = Vict_Sex)) +
+  geom_bar(fill = "yellow") +
+  labs(title = "Victim's Gender Distribution", x = "Victim Gender", y = "Count") +
+  scale_y_continuous(labels = comma) +
+  theme_bw()
+
+```
+```{r}
+ggplot(data, aes(x = `Part_1-2`)) +
+  geom_bar(fill = "blue") +
+  labs(title = "Seriousness of Crimes", x = "Seriousness level", y = "Count") +
+  scale_y_continuous(labels = comma) +
+  theme_gray()
+```
+
+
+```{r}
+ggplot(data, aes(x = TIME_OCC)) +
+  geom_bar(fill = "green") +
+  labs(title = "Crime Incidents by Hour of Day", x = "Hour", y = "Count")
+```
+```{r}
+# Grouped bar chart to analyze weapon usage by victim gender
+ggplot(data, aes(x = Weapon_Desc, fill = Vict_Sex)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Weapon Usage by Victim Gender", 
+       x = "Weapon Description", y = "Count", fill = "Victim Gender") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(values = c("lightblue", "red", "black"))
+
+```
+
+```{r}
+data <- data %>%
+  mutate(DATE_OCC = ymd(DATE_OCC), # Converting the Date to proper date format (MM/DD/YYYY)
+         Year = year(DATE_OCC), # Extracting the year
+         Month = month(DATE_OCC), # Extracting the month
+         Day = day(DATE_OCC)) # Extracting the day
+
+# View the resulting dataset
+glimpse(data)
+```
+```{r}
+# Converting numeric months to full month names
+data <- data %>%
+  mutate(Month = month.name[Month])
+```
+
+```{r}
+# Converting Month to a factor 
+data$Month <- factor(data$Month, 
+                     levels = c("January", "February", "March", "April", "May", "June", 
+                                "July", "August", "September", "October", "November", "December"))
+
+# Plot
+ggplot(data, aes(x = Month)) +
+  geom_bar(fill = "orange") +
+  labs(title = "Crime Frequency Over Time", x = "Month", y = "Count") +
+  theme_minimal()
+```
+
+```{r}
+ggplot(data, aes(x = DATE_OCC)) +
+  geom_bar(fill = "purple") +
+  labs(title = "Crime Frequency throughout years", x = "Date", y = "Count")
+```
+
+```{r}
+# Crime trends throughout months for each year
+ggplot(data, aes(x = Month, group = Year, color = factor(Year))) +
+  geom_line(stat = "count") +
+  geom_point(stat = "count") +
+  labs(title = "Crimes throughout months for each year", 
+       x = "Month", y = "Crime Count", color = "Year") +
+  theme_minimal()
+
+```
+
