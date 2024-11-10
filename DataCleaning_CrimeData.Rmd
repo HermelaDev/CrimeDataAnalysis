@@ -1,5 +1,5 @@
 ---
-title: "CrimeDataAnalysis"
+title: "DataCleaning_CrimeData"
 author: "Hermela Seltanu"
 date: "2024-11-02"
 output: html_document
@@ -9,7 +9,7 @@ output: html_document
 # installing packages
 # install.packages('tidyverse')
 
-# Loding the library
+# Loading the libraries
 library(tidyverse)
 library(readxl)
 library(lubridate)
@@ -35,7 +35,6 @@ colnames(data)
 ```
 
 ```{r}
-
 # To understand data type of each column in the dataframe
 glimpse(data)
 ```
@@ -64,20 +63,24 @@ data$DR_NO <- as.character(data$DR_NO)
 # Checking for duplicates
 sum(duplicated(data$DR_NO))
 ```
+
 ```{r}
 # Checking for missing values
 sum(is.na(data$DR_NO))
 ```
+
 #### DATE_OCC
 
 ```{r}
 # Checking the varaible is in date format
 class(data$DATE_OCC)
 ```
+
 ```{r}
 # Checking for missing values
 sum(is.na(data$DATE_OCC))
 ```
+
 #### TIME_OCC
 
 ```{r}
@@ -99,6 +102,7 @@ sum(is.na(data$TIME_OCC))
 ```{r}
 glimpse(data)
 ```
+
 ```{r}
 data
 ```
@@ -109,6 +113,7 @@ data
 # Checking for unique values
 unique(data$AREA_NAME)
 ```
+
 ```{r}
 # Replacing for abbreviation
 data$AREA_NAME <- gsub("N Hollywood", "North Hollywood", data$AREA_NAME)
@@ -117,10 +122,12 @@ data$AREA_NAME <- gsub("N Hollywood", "North Hollywood", data$AREA_NAME)
 ```{r}
 glimpse(data)
 ```
+
 ```{r}
 # Checking for the modified unique values
 unique(data$AREA_NAME)
 ```
+
 ```{r}
 # Trimming for leading and ending spaces
 data$AREA_NAME <- trimws(data$AREA_NAME)
@@ -141,6 +148,7 @@ data <- data %>%
 
 class(data$`Part_1-2`)
 ```
+
 #### Vict_age
 
 ```{r}
@@ -154,6 +162,7 @@ data$Vict_Age <- replace(data$Vict_Age, data$Vict_Age <= 0, median_age)
 ```{r}
 glimpse(data)
 ```
+
 #### Vict_Sex
 
 ```{r}
@@ -167,7 +176,8 @@ common_crime <- data %>%
   summarise(count = n(), .groups = "drop") # Counting the unique pairs & Removing the grouping
 common_crime
 ```
-```{r} 
+
+```{r}
 # Finding the most common Vict_Sex for each Crime Type
 most_common_sex <- common_crime %>%
   filter(!is.na(Vict_Sex)) %>%  # Exclude missing Vict_Sex
@@ -249,8 +259,8 @@ common_crime2 <- data %>%
   summarise(count = n(), .groups = "drop") # Counting the unique pairs and  Removing the grouping
 ```
 
-```{r} 
-# Finding the most common Vict_Sex for each Crime Type
+```{r}
+# Finding the most common Vict_descent for each Crime Type
 most_common_descent <- common_crime2 %>%
   filter(!is.na(Vict_Descent)) %>%  # Exclude missing Vict_Descent
   group_by(Crm_Cd_Desc) %>%
@@ -261,7 +271,7 @@ most_common_descent <- common_crime2 %>%
 ```
 
 ```{r}
-# Filling NA values with the most common sex for each Crime Type
+# Filling NA values with the most common descent for each Crime Type
 data <- data %>%
   left_join(most_common_descent, by = "Crm_Cd_Desc") %>% # Joining datasets based on a common key
   mutate(Vict_Descent = ifelse(is.na(Vict_Descent.x), Vict_Descent.y, Vict_Descent.x)) %>% # if na put Vict_Descent.y(the corresponding value in most_common_sex column), if not keep the value in Vict_Descent.x)
@@ -272,6 +282,7 @@ data <- data %>%
 # Checking for missing values
 sum(is.na(data$Vict_Descent))
 ```
+
 ```{r}
 # Check for mismatches between the 'Crm_Cd_Desc' in both datasets
 setdiff(unique(data$Crm_Cd_Desc), unique(most_common_descent$Crm_Cd_Desc))
@@ -333,7 +344,7 @@ common_crime_premis <- data %>%
   summarise(count = n(), .groups = "drop") # Counting the unique pairs and  Removing the grouping
 ```
 
-```{r} 
+```{r}
 # Finding the most common Premis_Desc for each Crime Type
 most_common_premis <- common_crime_premis%>%
   filter(!is.na(Premis_Desc)) %>%  # Exclude missing Premis_Desc
@@ -363,11 +374,11 @@ sum(is.na(data$Premis_Desc))
 # Checking for missing values
 sum(is.na(data$Weapon_Desc))
 ```
+
 ```{r}
 data <- data %>% 
   mutate(Weapon_Desc = replace(Weapon_Desc,is.na(Weapon_Desc), "No weapon used"))
 ```
-
 
 ```{r}
 data <- data %>%
@@ -412,11 +423,9 @@ data <- data %>%
     Weapon_Desc == "No weapon used" ~ "No weapon used",
     
     # Catch-all for anything else that doesn't match the above categories
-    TRUE ~ Weapon_Desc
-  )) # if not keep the existing
+    TRUE ~ Weapon_Desc)) # if not keep the existing
 
 ```
-
 
 ```{r}
 # Converting to factor
@@ -424,7 +433,6 @@ data$Weapon_Desc <- factor(data$Weapon_Desc, levels = c("Firearm", "Bladed/Sharp
                                                       "Blunt Instruments", "Explosives/Chemicals", 
                                                       "Other/Unconventional", "No weapon used"))
 ```
-
 
 ```{r}
 sum(is.na(data$Weapon_Desc))
@@ -442,6 +450,7 @@ glimpse(data)
 sum(is.na(data$Status_Desc))
 unique(data$Status_Desc)
 ```
+
 ```{r}
 # Renaming the values
 data <- data %>%
@@ -464,6 +473,7 @@ unique(data$Status_Desc)
 anyNA(data$LAT)
 anyNA(data$LON)
 ```
+
 ```{r}
 # Checking all the values are within the valid ranges of LAT & LON
 invalid_lat <- sum(data$LAT < -90 | data$LAT > 90, na.rm = TRUE)
@@ -473,6 +483,7 @@ invalid_lat
 invalid_lon  
 
 ```
+
 ```{r}
 # Checking the columns once more
 glimpse(data)
@@ -480,8 +491,14 @@ glimpse(data)
 ```
 
 ```{r}
-# Saving the cleaned dataset
-write.csv(data, "Cleaned_Crime_Data.csv", row.names = FALSE)
-
+colnames(data)
 ```
 
+```{r}
+# unique(data$Crm_Cd_Desc)
+```
+
+```{r}
+# Saving the cleaned dataset
+write.csv(data, "Cleaned_Crime_Data.csv", row.names = FALSE)
+```
