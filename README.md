@@ -85,11 +85,34 @@ As part of the analysis on the **Cleaned Crime Data** dataset, the following ste
 </p>
 
 - **Crime Seriousness**: A bar chart highlighted the distribution between serious (`Part 1`) and less serious (`Part 2`) crimes, showing a high prevalence of both categories.
+<p align="center">
+  <img src="images/seriousness_of_crime.jpeg" alt="Alt text" width="300"/>
+</p>
+
 - **Weapon Usage by Gender**: A bar chart compared weapon usage across genders, revealing a high frequency of crimes without weapons, followed by bladed objects and firearms.
+<p align="center">
+  <img src="images/weapon_usage_by_victim_gender.jpeg" alt="Alt text" width="300"/>
+</p>
+
 - **Victim Age Distribution**: A histogram indicated that most victims were in their 30s, emphasizing a need for targeted crime prevention strategies for this age group.
+<p align="center">
+  <img src="images/age_distribution_gender.jpeg" alt="Alt text" width="300"/>
+</p>
+
 - **Crime Distribution by Area**: A bar plot identified the Central and 77th Street areas as having the highest crime rates, suggesting the need for increased law enforcement in these regions.
+<p align="center">
+  <img src="images/area.jpeg" alt="Alt text" width="300"/>
+</p>
+
 - **Monthly Crime Trends**: Analysis over months indicated a spike in crimes in January, with a gradual decline towards November and December. This pattern might be influenced by post-holiday factors and increased police efforts during year-end.
+<p align="center">
+  <img src="images/crime_over_months.jpeg" alt="Alt text" width="300"/>
+</p>
+
 - **Yearly Crime Trends**: A line plot showed an increasing trend in crime counts from 2020 to 2022, potentially reflecting post-pandemic challenges, with a decline observed in 2023, indicating possible effective interventions.
+<p align="center">
+  <img src="images/crime_over_months_of_years.jpeg" alt="Alt text" width="300"/>
+</p>
 
 #### 4. Key Insights
 - **Severity of Crimes**: Both serious and less serious crimes are prevalent, requiring distinct strategies for law enforcement.
