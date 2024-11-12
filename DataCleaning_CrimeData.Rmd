@@ -495,10 +495,6 @@ colnames(data)
 ```
 
 ```{r}
-# unique(data$Crm_Cd_Desc)
-```
-
-```{r}
 # Saving the cleaned dataset
 write.csv(data, "Cleaned_Crime_Data.csv", row.names = FALSE)
 ```
