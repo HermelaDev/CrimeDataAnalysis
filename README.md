@@ -1,4 +1,6 @@
-<img src="91lgK3xtGfL._AC_UF350,350_QL80_.jpg" alt="Alt text" width="300"/>
+<p align="center">
+  <img src="91lgK3xtGfL._AC_UF350,350_QL80_.jpg" alt="Alt text" width="300"/>
+</p>
 
 # Data Cleaning and Exploratory Data Analysis (EDA) on Crime Data
 
