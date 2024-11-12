@@ -80,6 +80,10 @@ As part of the analysis on the **Cleaned Crime Data** dataset, the following ste
 
 #### 3. Data Visualization
 - **Victim Gender Distribution**: A donut chart showed that most crime victims were females, indicating a potential gender disparity in victimization.
+<p align="center">
+  <img src="WhatsApp Image 2024-11-12 at 11.19.30 PM.jpeg" alt="Alt text" width="300"/>
+</p>
+
 - **Crime Seriousness**: A bar chart highlighted the distribution between serious (`Part 1`) and less serious (`Part 2`) crimes, showing a high prevalence of both categories.
 - **Weapon Usage by Gender**: A bar chart compared weapon usage across genders, revealing a high frequency of crimes without weapons, followed by bladed objects and firearms.
 - **Victim Age Distribution**: A histogram indicated that most victims were in their 30s, emphasizing a need for targeted crime prevention strategies for this age group.
