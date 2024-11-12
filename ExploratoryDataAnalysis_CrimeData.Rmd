@@ -97,6 +97,7 @@ ggplot(data, aes(x = `Part_1-2`)) +
 ggplot(data, aes(x = Weapon_Desc, fill = Vict_Sex)) +
   geom_bar(position = "dodge") +
   labs(title = "Weapon Usage by Victim Gender", x = "Weapon Description", y = "Number of Victims", fill = "Victim Gender") +
+  scale_y_continuous(labels = comma) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   scale_fill_manual(values = c("lightblue", "red", "black"))
