@@ -1,3 +1,5 @@
+<img src="91lgK3xtGfL._AC_UF350,350_QL80_.jpg" alt="Alt text" width="300"/>
+
 # Data Cleaning and Exploratory Data Analysis (EDA) on Crime Data
 
 ## Overview
@@ -62,7 +64,7 @@ Recoded categorical values for clarity (e.g., recoding "1" and "2" in Part_1-2 t
 - **Special Cases Handling:**
 For specific crime descriptions with unique handling (e.g., "BOAT - STOLEN"), filled missing values using the most common attribute from the entire dataset.
 
-## Exploratory Data Analysis (EDA) - Crime Data
+## Exploratory Data Analysis
 
 As part of the analysis on the **Cleaned Crime Data** dataset, the following steps were performed:
 
@@ -99,3 +101,9 @@ If you wish to contribute to this project, you are welcome to clone the reposito
 ## License
 
 This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
+
+## Contact
+
+If you have any questions or need further assistance, feel free to reach out:
+Hermela Seltanu
+LinkedIn: [Hermela Seltanu](https://www.linkedin.com/in/hermelaseltanu/)
