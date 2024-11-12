@@ -1,9 +1,11 @@
 # Data Cleaning and Exploratory Data Analysis (EDA) on Crime Data
 
 ## Overview
+
 This project involves performing data cleaning and exploratory data analysis (EDA) on a dataset of crime data. The goal of this project is to clean the data by handling missing values, duplicates, and inconsistencies in the dataset, followed by a thorough exploration of the relationships between variables. Patterns, trends, and insights are uncovered to understand the dataset better and prepare it for potential further analysis or modeling.
 
 ## Table of Contents
+
 1. [Installation](#installation)
 2. [Data Collection](#data-collection)
 3. [Data Cleaning](#data-cleaning)
@@ -13,6 +15,7 @@ This project involves performing data cleaning and exploratory data analysis (ED
 7. [Contact](#contact)
 
 ## Installation
+
 To run this project, ensure you have the following R libraries installed:
 
 ```r
@@ -23,9 +26,11 @@ install.packages('hms')
 These libraries are required to handle data manipulation (tidyverse), date/time handling (lubridate), reading data from Excel files (readxl), and time formatting (hms).
 ```
 ## Data Collection
+
 The dataset used in this project is the Crime Data from 2020 to Present, available in Excel format. The dataset contains multiple columns related to the details of crimes, including date, time, location, and crime type.
 
 ## Data Cleaning
+
 The DataCleaning_CrimeData process involved multiple steps to prepare the crime dataset for analysis:
 
 - **Loading Libraries and Data Import:**
@@ -86,3 +91,11 @@ As part of the analysis on the **Cleaned Crime Data** dataset, the following ste
 - **Crime Hotspots**: Specific areas (Central & 77th Street) had high crime frequencies, suggesting the need for focused crime prevention efforts.
 
 This analysis provides a comprehensive overview of crime patterns and potential areas for policy intervention and resource allocation by law enforcement agencies.
+
+## Contributing
+
+If you wish to contribute to this project, you are welcome to clone the repository and submit a pull request with your improvements or suggestions.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
