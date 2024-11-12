@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="91lgK3xtGfL._AC_UF350,350_QL80_.jpg" alt="Alt text" width="300"/>
+  <img src="images/91lgK3xtGfL._AC_UF350,350_QL80_.jpg" alt="Alt text" width="300"/>
 </p>
 
 # Data Cleaning and Exploratory Data Analysis (EDA) on Crime Data
@@ -81,7 +81,7 @@ As part of the analysis on the **Cleaned Crime Data** dataset, the following ste
 #### 3. Data Visualization
 - **Victim Gender Distribution**: A donut chart showed that most crime victims were females, indicating a potential gender disparity in victimization.
 <p align="center">
-  <img src="WhatsApp Image 2024-11-12 at 11.19.30 PM.jpeg" alt="Alt text" width="300"/>
+  <img src="images/WhatsApp Image 2024-11-12 at 11.19.30 PM.jpeg" alt="Alt text" width="300"/>
 </p>
 
 - **Crime Seriousness**: A bar chart highlighted the distribution between serious (`Part 1`) and less serious (`Part 2`) crimes, showing a high prevalence of both categories.
